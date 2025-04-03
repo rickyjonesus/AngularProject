@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MixpanelService } from './MixPanelService';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularProject1';
+
+  constructor(private mixpanelService: MixpanelService) { }
+
+  trackEvent() {
+    this.mixpanelService.track('Button Clicked', { button: 'example-button' });
+  }
+
+  clickedEvent() {
+
+    this.trackEvent();
+  }
+
+
 }

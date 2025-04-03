@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../environment';
 import * as mixpanel from 'mixpanel-browser';
 
 @Injectable({
@@ -11,10 +11,15 @@ export class MixpanelService {
   constructor() {
     this.mixpanelToken = environment.mixpanelToken;
     this.init();
+
   }
 
   init(): void {
-    mixpanel.init(this.mixpanelToken);
+    mixpanel.init(this.mixpanelToken, {
+      debug: true,
+      track_pageview: true,
+      persistence: "localStorage",
+    });
   }
 
   track(eventName: string, properties?: any): void {
